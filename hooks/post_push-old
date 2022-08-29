@@ -1,4 +1,0 @@
-#!/bin/bash
-
-docker tag $IMAGE_NAME $DOCKER_REPO:$RUNNER_VERSION
-docker push $IMAGE_NAME
