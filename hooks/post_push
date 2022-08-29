@@ -5,5 +5,4 @@
 # docker push 
 
 docker tag $IMAGE_NAME $DOCKER_REPO:$RUNNER_VERSION
-docker tag $IMAGE_NAME $DOCKER_REPO:latest
 docker push $DOCKER_REPO
