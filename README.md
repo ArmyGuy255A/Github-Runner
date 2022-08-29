@@ -4,7 +4,7 @@
 In order to run this container, you must specify 5 environment variables:
 - GH_PAT=''
   - This is a PAT from your GitHub account. This PAT should have the following permissions:
-    - SCOPE:REPO
+    - SCOPE:REPO and READ:ORG
 - GH_OWNER=''
   - This is your GitHub username
 - GH_REPOSITORY=''
