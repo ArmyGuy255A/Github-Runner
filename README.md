@@ -16,9 +16,11 @@ In order to run this container, you must specify 5 environment variables:
 
 Example:
 ```bash
-docker run -e GH_PAT='asdf!@#' -e GH_OWNER='ArmyGuy255a' -e GH_REPOSITORY='GITRunner' -e GH_API_URL='https://github.com/api/v3/repos' -e GH_URL='https://github.com' github-runner:latest
+docker run -e GH_PAT='asdf!@#' -e GH_OWNER='ArmyGuy255a' -e GH_REPOSITORY='GITRunner' -e GH_API_URL='https://github.com/api/v3/repos' -e GH_URL='https://github.com' armyguy255a/github-runner:latest
 ```
 
 The full path of the GitHub URL would look something like this:
+
 https://github.com/ArmyGuy255a/GITRunner
+
 https://api.github.com/ArmyGuy255a/GITRunner/actions/runners/registration-token
