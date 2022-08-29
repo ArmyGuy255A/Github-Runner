@@ -1,1 +1,1 @@
-docker build --build-arg RUNNER_VERSION=$RUNNER_VERSION --tag github-runner:gatech --tag github-runner:2.285.1 -f ../Dockerfile
+docker build --build-arg RUNNER_VERSION=$RUNNER_VERSION --tag github-runner:latest --tag github-runner:$RUNNER_VERSION -f ../Dockerfile
