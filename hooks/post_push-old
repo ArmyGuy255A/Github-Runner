@@ -1,9 +1,4 @@
 #!/bin/bash
 
-# docker build --build-arg RUNNER_VERSION=$RUNNER_VERSION --tag $IMAGE_NAME:$RUNNER_VERSION .
-# docker build --build-arg RUNNER_VERSION=$RUNNER_VERSION --tag $IMAGE_NAME:$RUNNER_VERSION .
-# docker push 
-docker image ls
 docker tag $IMAGE_NAME $DOCKER_REPO:$RUNNER_VERSION
-# docker push $DOCKER_REPO:$RUNNER_VERSION
 docker push $IMAGE_NAME

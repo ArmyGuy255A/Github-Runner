@@ -1,6 +1,0 @@
-FROM alpine
-RUN apk update
-RUN apk add curl nodejs wget unzip vim git py3-pip jq libffi-dev python3
-RUN pip install --upgrade pip
-RUN pip install azure-cli
-CMD sh
