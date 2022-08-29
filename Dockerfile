@@ -18,32 +18,29 @@ LABEL GitHub="https://github.gatech.edu/pdieppa3"
 LABEL BaseImage="ubuntu:20.04"
 LABEL RunnerVersion=${RUNNER_VERSION}
 
-# # update the base packages + add a non-sudo user
-# RUN apt-get update -y && apt-get upgrade -y && useradd -m docker
+# update the base packages + add a non-sudo user
+RUN apt-get update -y && apt-get upgrade -y && useradd -m docker
 
-# RUN apt-get install -y --no-install-recommends \
-#     curl nodejs wget unzip vim git azure-cli jq build-essential libssl-dev libffi-dev python3 python3-venv python3-dev python3-pip
+RUN apt-get install -y --no-install-recommends \
+    curl nodejs wget unzip vim git azure-cli jq build-essential libssl-dev libffi-dev python3 python3-venv python3-dev python3-pip
 
-# # cd into the user directory, download and unzip the github actions runner
-# # Note: this runner needs to be consistent/compatible with the Enterprise Github server
-# RUN cd /home/docker && mkdir actions-runner && cd actions-runner \
-#     && curl -O -L https://github.com/actions/runner/releases/download/v${RUNNER_VERSION}/actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz \
-#     && tar xzf ./actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz
+# cd into the user directory, download and unzip the github actions runner
+# Note: this runner needs to be consistent/compatible with the Enterprise Github server
+RUN cd /home/docker && mkdir actions-runner && cd actions-runner \
+    && curl -O -L https://github.com/actions/runner/releases/download/v${RUNNER_VERSION}/actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz \
+    && tar xzf ./actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz
 
-# # install some additional dependencies
-# RUN chown -R docker ~docker && /home/docker/actions-runner/bin/installdependencies.sh
+# install some additional dependencies
+RUN chown -R docker ~docker && /home/docker/actions-runner/bin/installdependencies.sh
 
-# # add over the start.sh script
-# ADD scripts/start.sh start.sh
+# add over the start.sh script
+ADD scripts/start.sh start.sh
 
-# # make the script executable
-# RUN chmod +x start.sh
+# make the script executable
+RUN chmod +x start.sh
 
-# # set the user to "docker" so all subsequent commands are run as the docker user
-# USER docker
+# set the user to "docker" so all subsequent commands are run as the docker user
+USER docker
 
-# # set the entrypoint to the start.sh script
-# ENTRYPOINT ["./start.sh"]
-ENTRYPOINT ["tail" "-f" "/dev/null"]
-
-# https://github.gatech.edu/_services/pipelines/_apis/distributedtask/packagedownload/agent/linux-x64/2.285.1
+# set the entrypoint to the start.sh script
+ENTRYPOINT ["./start.sh"]
