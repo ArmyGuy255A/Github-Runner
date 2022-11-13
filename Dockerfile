@@ -59,5 +59,5 @@ USER docker
 RUN . /etc/profile.d/maven.sh
 
 # set the entrypoint to the start.sh script
-#ENTRYPOINT ["./start.sh"]
-ENTRYPOINT ["/bin/sh"]
+ENTRYPOINT ["./start.sh"]
+#ENTRYPOINT ["/bin/sh"]
