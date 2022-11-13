@@ -40,7 +40,7 @@ ADD scripts/start.sh start.sh
 # make the script executable
 RUN chmod +x start.sh
 
-RUN apt-get install -y --no-install-recommends openjdk-17-jdk pandoc texlive-xetex
+RUN apt-get install -y --no-install-recommends openjdk-17-jdk pandoc texlive texlive-xetex
 
 #Install maven
 RUN cd /home/docker && curl -O -L https://dlcdn.apache.org/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz \
@@ -59,4 +59,5 @@ USER docker
 RUN . /etc/profile.d/maven.sh
 
 # set the entrypoint to the start.sh script
-ENTRYPOINT ["./start.sh"]
+#ENTRYPOINT ["./start.sh"]
+ENTRYPOINT ["/bin/sh"]
