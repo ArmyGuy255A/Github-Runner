@@ -11,6 +11,7 @@ FROM ubuntu:20.04
 #input GitHub runner version argument
 ARG RUNNER_VERSION
 ENV DEBIAN_FRONTEND=noninteractive
+ENV MAVEN_VERSION=3.8.6
 
 LABEL Author="Phil Dieppa"
 LABEL Email="pdieppa3@gatech.edu"
@@ -39,8 +40,23 @@ ADD scripts/start.sh start.sh
 # make the script executable
 RUN chmod +x start.sh
 
+RUN apt-get install -y --no-install-recommends openjdk-17-jdk pandoc texlive-xetex
+
+#Install maven
+RUN cd /home/docker && curl -O -L https://dlcdn.apache.org/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz \
+    && tar xzf ./apache-maven-${MAVEN_VERSION}-bin.tar.gz -C /opt \
+    && ln -s /opt/apache-maven-${MAVEN_VERSION} /opt/maven \
+    && rm ./apache*
+
+#Setup maven
+ADD scripts/maven.sh /etc/profile.d/maven.sh
+
+RUN chmod +x /etc/profile.d/maven.sh 
+
 # set the user to "docker" so all subsequent commands are run as the docker user
 USER docker
+
+RUN . /etc/profile.d/maven.sh
 
 # set the entrypoint to the start.sh script
 ENTRYPOINT ["./start.sh"]
