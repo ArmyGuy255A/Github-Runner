@@ -18,7 +18,7 @@ LABEL Email="pdieppa3@gatech.edu"
 LABEL GitHub="https://github.gatech.edu/pdieppa3"
 LABEL BaseImage="ubuntu:20.04"
 LABEL RunnerVersion=${RUNNER_VERSION}
-LABEL MavenVersion=${MAVEN_VERSION}
+LABEL MavenVersion=3.8.6
 LABEL JDKVersion=17
 
 # update the base packages + add a non-sudo user
@@ -34,9 +34,9 @@ RUN cd /home/docker && mkdir actions-runner && cd actions-runner \
     && tar xzf ./actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz
 
 #Install maven
-RUN cd ~ && curl -O -L https://dlcdn.apache.org/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz \
-    && tar xzf ./apache-maven-${MAVEN_VERSION}-bin.tar.gz -C /opt \
-    && ln -s /opt/apache-maven-${MAVEN_VERSION} /opt/maven \
+RUN cd ~ && curl -O -L https://dlcdn.apache.org/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.tar.gz \
+    && tar xzf ./apache-maven-3.8.6-bin.tar.gz -C /opt \
+    && ln -s /opt/apache-maven-3.8.6 /opt/maven \
     && rm ./apache*
 
 #Setup maven
