@@ -34,7 +34,7 @@ RUN cd /home/docker && mkdir actions-runner && cd actions-runner \
     && tar xzf ./actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz
 
 #Install maven
-RUN curl -O -L https://dlcdn.apache.org/maven/maven-3/3.8.6/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz \
+RUN cd ~ && curl -O -L https://dlcdn.apache.org/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz \
     && tar xzf ./apache-maven-${MAVEN_VERSION}-bin.tar.gz -C /opt \
     && ln -s /opt/apache-maven-${MAVEN_VERSION} /opt/maven \
     && rm ./apache*
@@ -58,5 +58,4 @@ RUN chmod +x start.sh
 USER docker
 
 # set the entrypoint to the start.sh script
-# ENTRYPOINT ["./start.sh"]
-ENTRYPOINT ["/bin/sh"]
+ENTRYPOINT ["./start.sh"]
