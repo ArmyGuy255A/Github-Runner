@@ -23,7 +23,7 @@ LABEL RunnerVersion=${RUNNER_VERSION}
 RUN apt-get update -y && apt-get upgrade -y && useradd -m docker
 
 RUN apt-get install -y --no-install-recommends \
-    curl nodejs wget unzip vim git azure-cli jq build-essential libssl-dev libffi-dev python3 python3-venv python3-dev python3-pip
+    curl nodejs wget unzip vim git azure-cli jq build-essential libssl-dev libffi-dev python3 python3-venv python3-dev python3-pip zip
 
 # cd into the user directory, download and unzip the github actions runner
 # Note: this runner needs to be consistent/compatible with the Enterprise Github server
